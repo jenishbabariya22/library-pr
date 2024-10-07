@@ -20,7 +20,12 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api', require('./routes/book'));
 // MongoDB connection
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true, // Optional: if you need to create indexes
+  serverSelectionTimeoutMS: 5000, // Optional: to wait 5 seconds before failing
+})
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Failed to connect to MongoDB:', err));
 
