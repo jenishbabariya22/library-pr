@@ -27,6 +27,11 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 // Import Routes
 const booksRouter = require('./routes/book');
 
+// demo route
+app.get("/",(req,res)=>{
+  res.send("hi");
+})
+
 // Routes Middleware
 app.use('/api', booksRouter);
 
